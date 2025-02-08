@@ -203,6 +203,7 @@
 <body>
   <!-- 右上角按鈕 -->
   <div class="nav-buttons">
+    <a href="#" id="home-btn">首頁</a>
     <a href="#" id="contact-btn">聯絡我們</a>
     <a href="#" id="about-btn">相關介紹</a>
     <a href="#" id="services-btn">服務</a>
@@ -261,6 +262,17 @@
         container.classList.add("shift-down");
       }
     }
+
+    //「首頁」按鈕的點擊事件
+    document.getElementById("home-btn").addEventListener("click", function(e) {
+      e.preventDefault();
+    
+      // 關閉所有展開的內容
+      document.querySelectorAll('.expandable').forEach(sec => sec.classList.remove("open"));
+    
+      // 讓 `.container` 回到原位
+      document.querySelector('.container').classList.remove("shift-down");
+    });
 
     // 綁定按鈕點擊事件
     document.getElementById("contact-btn").addEventListener("click", function(e) {
