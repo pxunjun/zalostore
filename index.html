@@ -3,33 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My One Page Website</title>
+  <title>Responsive Background</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
+    /* 基本樣式 */
+    html, body {
       margin: 0;
       padding: 0;
-      background-image: url('images/background_image.png'); /* 替換成你的圖片路徑 */
-      background-size: auto; /* 背景圖片會自動調整以覆蓋整個螢幕 */
+      height: 100%; /* 確保高度覆蓋全屏 */
+    }
+
+    /* 預設背景圖樣式（適用於桌面裝置） */
+    body {
+      background-image: url('images/background_images.jpg'); /* 替換為你的圖片路徑 */
+      background-size: cover; /* 背景圖自動調整大小以覆蓋整個畫面 */
       background-position: center; /* 背景圖片置中 */
-      background-repeat: no-repeat; /* 防止背景圖片重複 */
-      background-attachment: scroll; 
-      color: white; /* 文字顏色設為白色，與背景形成對比 */
+      background-repeat: no-repeat; /* 背景圖片不重複 */
     }
-    h1 {
-      margin-top: 50px;
-      font-size: 2.5rem;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* 增加文字陰影 */
+
+    /* 手機螢幕的背景圖設定 */
+    @media (max-width: 768px) {
+      body {
+        background-size: contain; /* 確保手機畫面完全顯示整張圖片（不裁切） */
+        background-position: top; /* 背景圖片靠上方對齊 */
+      }
     }
-    p {
-      font-size: 1.2rem;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* 文字陰影使文字更清晰 */
+
+    /* 極小裝置（例如 iPhone SE 或更小） */
+    @media (max-width: 480px) {
+      body {
+        background-size: 100% auto; /* 寬度佔滿整個螢幕，高度自適應 */
+        background-position: top center; /* 圖片置中並靠上方 */
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to My One Page Website</h1>
-  <p>This is a simple one-page website hosted with Cloudflare Pages!</p>
 </body>
 </html>
