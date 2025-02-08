@@ -80,13 +80,26 @@
       background: rgba(0, 0, 0, 0.5);
       padding: 20px 40px;
       border-radius: 15px;
-      position: absolute;
+      position: fixed; /* 固定在螢幕底部 */
       left: 50%;
-      bottom: 2%; /* 永遠距離螢幕底部 5% */
       transform: translateX(-50%); /* 水平置中 */
-      width: 80%;
+      width: 90%;
       max-width: 800px;
       z-index: 10; /* 確保 `.container` 不會覆蓋導航按鈕 */
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px 40px;
+      border-radius: 15px;
+      position: fixed; /* 固定在螢幕底部 */
+      left: 50%;
+      bottom: 5px;  /* 讓 `.container` 稍微浮起 */
+      transform: translateX(-50%); /* 水平置中 */
+      width: 90%;
+      max-width: 800px;
+      z-index: 10; /* 確保 `.container` 不會被其他內容遮擋 */
     }
     
     /* 標題 */
