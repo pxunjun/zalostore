@@ -173,6 +173,30 @@
       bottom: 10%; /* 再往上移一點 */
     }
   }
+
+  /* 讓 `.container` 在小螢幕時縮小，避免擋住展開區塊 */
+  @media (max-width: 768px) {
+    .container {
+      width: 90%;
+      bottom: 12%; /* 在小螢幕時，稍微往上移，避免擋住展開內容 */
+      padding: 15px 30px; /* 減少 padding，讓內容更緊湊 */
+    }
+  }
+
+  /* 極小螢幕（如 iPhone SE） */
+  @media (max-width: 480px) {
+    .container {
+      width: 95%;
+      bottom: 15%; /* 再往上移，讓展開的區塊有更多空間 */
+      padding: 10px 20px; /* 進一步縮小內距 */
+    }
+  }
+
+  /* 當 `.expandable.open` 展開時，讓 `.container` 自動往上移 */
+  .container.shift-up {
+    bottom: 30% !important; /* 當有內容展開時，讓 `.container` 更靠上 */
+    transition: bottom 0.5s ease-in-out;
+  }
     
   </style>
 </head>
@@ -220,19 +244,23 @@
   <script>
     function toggleSection(sectionId) {
       const section = document.getElementById(sectionId);
-      
+      const container = document.querySelector('.container');
+    
       // 檢查是否有 "open" 類別，如果有就收起
       if (section.classList.contains("open")) {
         section.classList.remove("open");
+        container.classList.remove("shift-up"); // 讓 `.container` 回到原來位置
       } else {
         // 關閉其他已展開的區塊
         document.querySelectorAll('.expandable').forEach(sec => sec.classList.remove("open"));
         
         // 展開點擊的區塊
         section.classList.add("open");
+        
+        // 讓 `.container` 向上移動
+        container.classList.add("shift-up");
       }
     }
-
     // 綁定按鈕點擊事件
     document.getElementById("contact-btn").addEventListener("click", function(e) {
       e.preventDefault();
@@ -249,5 +277,7 @@
       toggleSection("services");
     });
   </script>
+
+
 </body>
 </html>
