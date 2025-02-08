@@ -3,40 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Background</title>
+  <title>Simple Landing Page</title>
   <style>
-    /* 基本樣式 */
-    html, body {
+    /* 重置樣式 */
+    * {
       margin: 0;
       padding: 0;
-      height: 100%; /* 確保高度覆蓋全屏 */
+      box-sizing: border-box;
     }
 
-    /* 預設背景圖樣式（適用於桌面裝置） */
+    /* 網頁背景樣式 */
     body {
-      background-image: url('images/background_image.png'); /* 替換為你的圖片路徑 */
-      background-size: cover; /* 背景圖自動調整大小以覆蓋整個畫面 */
-      background-position: center; /* 背景圖片置中 */
-      background-repeat: no-repeat; /* 背景圖片不重複 */
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url('images/background_image.png'); /* 替換為您的背景圖片 */
+      background-size: cover;
+      background-position: center;
+      color: white;
+      font-family: Arial, sans-serif;
     }
 
-    /* 手機螢幕的背景圖設定 */
-    @media (max-width: 768px) {
-      body {
-        background-size: contain; /* 確保手機畫面完全顯示整張圖片（不裁切） */
-        background-position: top; /* 背景圖片靠上方對齊 */
-      }
+    /* 容器 */
+    .container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5); /* 背景透明效果 */
+      padding: 20px 40px;
+      border-radius: 15px;
     }
 
-    /* 極小裝置（例如 iPhone SE 或更小） */
-    @media (max-width: 480px) {
-      body {
-        background-size: 100% auto; /* 寬度佔滿整個螢幕，高度自適應 */
-        background-position: top center; /* 圖片置中並靠上方 */
-      }
+    /* 標題 */
+    .container h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    }
+
+    /* 描述文字 */
+    .container p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* 按鈕樣式 */
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      color: white;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    /* 按鈕效果 */
+    .button:hover {
+      transform: scale(1.1);
+      background: linear-gradient(90deg, #feb47b, #ff7e5f);
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Welcome to My Website</h1>
+    <p>Discover amazing features and services tailored just for you. Click the button below to learn more!</p>
+    <a href="#" class="button">Get Started</a>
+  </div>
 </body>
 </html>
