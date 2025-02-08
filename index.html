@@ -191,10 +191,10 @@
       padding: 10px 20px; /* 進一步縮小內距 */
     }
   }
-
-  /* 當 `.expandable.open` 展開時，讓 `.container` 自動往上移 */
-  .container.shift-up {
-    bottom: 30% !important; /* 當有內容展開時，讓 `.container` 更靠上 */
+    
+  /* 當 `.expandable.open` 展開時，讓 `.container` 向下移動，消失在視野外 */
+  .container.shift-down {
+    bottom: -100%; /* 讓 `.container` 完全往下移動 */
     transition: bottom 0.5s ease-in-out;
   }
     
@@ -249,7 +249,7 @@
       // 檢查是否有 "open" 類別，如果有就收起
       if (section.classList.contains("open")) {
         section.classList.remove("open");
-        container.classList.remove("shift-up"); // 讓 `.container` 回到原來位置
+        container.classList.remove("shift-down"); // 回到原位
       } else {
         // 關閉其他已展開的區塊
         document.querySelectorAll('.expandable').forEach(sec => sec.classList.remove("open"));
@@ -257,10 +257,11 @@
         // 展開點擊的區塊
         section.classList.add("open");
         
-        // 讓 `.container` 向上移動
-        container.classList.add("shift-up");
+        // 讓 `.container` 往下移出視野
+        container.classList.add("shift-down");
       }
     }
+
     // 綁定按鈕點擊事件
     document.getElementById("contact-btn").addEventListener("click", function(e) {
       e.preventDefault();
