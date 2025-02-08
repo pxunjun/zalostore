@@ -27,12 +27,14 @@
     }
 
     /* 右上角按鈕樣式 */
+    /* 讓 `.nav-buttons` 固定在螢幕最上方 */
     .nav-buttons {
-      position: absolute;
-      top: 20px;
+      position: fixed;  /* 固定位置，不受其他元素影響 */
+      top: 15px;
       right: 20px;
       display: flex;
       gap: 10px;
+      z-index: 1000; /* 確保在最上層 */
     }
 
     .nav-buttons a {
@@ -72,7 +74,7 @@
       background: linear-gradient(90deg, #feb47b, #ff7e5f);
     }
 
-    /* 調整中心內容的垂直位置 */
+    /* 讓 `.container` 不會影響 `.nav-buttons` */
     .container {
       text-align: center;
       background: rgba(0, 0, 0, 0.5);
@@ -84,6 +86,7 @@
       transform: translateX(-50%); /* 水平置中 */
       width: 80%;
       max-width: 800px;
+      z-index: 10; /* 確保 `.container` 不會覆蓋導航按鈕 */
     }
     
     /* 標題 */
@@ -132,6 +135,45 @@
       width: 150px;  /* 設定固定寬度 */
       height: auto;  /* 保持圖片原始比例 */
   }
+
+  /* 響應式設計：當螢幕變小時，自動調整按鈕大小 */
+  @media (max-width: 768px) {
+    .nav-buttons {
+      top: 10px; /* 增加與上方的間距 */
+      right: 10px;
+      flex-direction: column; /* 改為垂直排列 */
+      gap: 5px; /* 按鈕間距縮小 */
+    }
+  
+    .nav-buttons a {
+      padding: 8px 12px;
+      font-size: 0.8rem; /* 縮小按鈕大小 */
+    }
+  
+    .container {
+      width: 90%; /* 讓 `container` 變窄，避免擋住按鈕 */
+      bottom: 8%; /* 當螢幕小時，稍微往上移動 */
+    }
+  }
+
+  /* 極小螢幕（如 iPhone SE） */
+  @media (max-width: 480px) {
+    .nav-buttons {
+      top: 5px;
+      right: 5px;
+    }
+  
+    .nav-buttons a {
+      font-size: 0.7rem;
+      padding: 6px 10px; /* 進一步縮小按鈕 */
+    }
+  
+    .container {
+      width: 95%;
+      bottom: 10%; /* 再往上移一點 */
+    }
+  }
+    
   </style>
 </head>
 <body>
