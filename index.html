@@ -121,6 +121,17 @@
       opacity: 1;
       padding: 20px;
     }
+
+    .image-container {
+      display: flex;         /* 讓圖片在同一行排列 */
+      justify-content: center; /* 水平置中 */
+      gap: 20px;            /* 兩張圖片之間的間距 */
+    }
+
+    .image-container img {
+      width: 120px;  /* 設定固定寬度 */
+      height: auto;  /* 保持圖片原始比例 */
+  }
   </style>
 </head>
 <body>
@@ -135,6 +146,13 @@
   <div class="container">
     <h1>Welcome to My Website</h1>
     <p>Discover amazing features and services tailored just for you. Click the button below to learn more!</p>
+    
+    <!-- 使用 Flexbox 讓兩張圖片並排 -->
+    <div class="image-container">
+        <img src="images/image1.png" alt="Image 1">
+        <img src="images/image2.png" alt="Image 2">
+    </div>  
+    
     <a href="#" class="button">Get Started</a>
   </div>
 
