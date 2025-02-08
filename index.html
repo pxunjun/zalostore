@@ -240,14 +240,22 @@
     transition: bottom 0.5s ease-in-out;
   }
     
+  #m_video {
+    width: 100%; /* 寬度自適應 */
+    max-width: 640px; /* 最大寬度 */
+    height: auto; /* 保持比例 */
+    display: block;
+    margin: 20px auto;
+  }
+
   </style>
 </head>
 <body>
   <!-- 右上角按鈕 -->
   <div class="nav-buttons">
     <a href="#" id="home-btn">Trang chủ</a> 
-    <a href="#" id="contact-btn">Liên hệ</a>
     <a href="#" id="about-btn">Giới thiệu</a>
+    <a href="#" id="contact-btn">Liên hệ</a>
     <!-- <a href="#" id="services-btn">Dịch vụ</a> -->
   </div>
 
@@ -287,6 +295,10 @@
 
   <div id="about" class="expandable">
     <h2>Giới thiệu</h2>
+      <video id="m_video" width="640" height="360" autoplay muted controls>
+        <source src="images/543341962476741106.MP4" type="video/mp4">
+        您的瀏覽器不支援 HTML5 視訊功能。
+      </video>
       <p>
         Bạn có muốn kiếm thêm thu nhập một cách dễ dàng và nhanh chóng ngay tại nhà không? Với Zalostore - ứng dụng đầu tiên và duy nhất tại Việt Nam kết nối bạn với hàng ngàn shop online uy tín như Shopee, Lazada, Tiki, bạn hoàn toàn có thể làm được điều đó!<br>
         Chỉ cần vài thao tác đơn giản trên điện thoại, bạn đã có thể tạo đơn hàng ảo và nhận ngay hoa hồng hấp dẫn từ các shop.Không cần kinh nghiệm, tất cả những gì bạn cần là một chiếc điện thoại có kết nối internet và một chút thời gian rảnh.<br>
