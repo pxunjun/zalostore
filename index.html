@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Landing Page with Smooth Scroll</title>
+  <title>Smooth Expanding Section</title>
   <style>
     /* 重置樣式 */
     * {
@@ -14,15 +14,16 @@
 
     /* 網頁背景樣式 */
     body {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      background-image: url('images/background_image_2.png'); /* 替換為您的背景圖片 */
+      background-image: url('images/background_image.png'); /* 替換為您的背景圖片 */
       background-size: cover;
       background-position: center;
       color: white;
       font-family: Arial, sans-serif;
+      padding: 50px 20px;
     }
 
     /* 右上角按鈕樣式 */
@@ -42,6 +43,7 @@
       border-radius: 20px;
       text-decoration: none;
       transition: background 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
     }
 
     .nav-buttons a:hover {
@@ -72,56 +74,35 @@
       line-height: 1.5;
     }
 
-    /* 按鈕樣式 */
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      color: white;
-      background: linear-gradient(90deg, #ff7e5f, #feb47b);
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.3s ease, background 0.3s ease;
+    /* 展開區域（預設為隱藏） */
+    .expandable {
+      width: 80%;
+      max-width: 800px;
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      border-radius: 10px;
+      padding: 0;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.6s ease-out, opacity 0.6s ease-out, padding 0.3s ease;
     }
 
-    /* 按鈕效果 */
-    .button:hover {
-      transform: scale(1.1);
-      background: linear-gradient(90deg, #feb47b, #ff7e5f);
-    }
-
-    /* 錨點區域樣式 */
-    section {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-    }
-
-    #about {
-      background-color: #1abc9c;
-    }
-
-    #contact {
-      background-color: #3498db;
-    }
-
-    #services {
-      background-color: #9b59b6;
+    /* 當展開時的樣式 */
+    .expandable.open {
+      max-height: 500px; /* 控制展開的最大高度 */
+      opacity: 1;
+      padding: 20px;
     }
   </style>
 </head>
 <body>
   <!-- 右上角按鈕 -->
   <div class="nav-buttons">
-    <a href="#about">相關介紹</a>
-    <a href="#contact">聯絡我們</a>
-    <a href="#services">服務</a>
+    <a href="#" id="contact-btn">聯絡我們</a>
+    <a href="#" id="about-btn">相關介紹</a>
+    <a href="#" id="services-btn">服務</a>
   </div>
 
   <!-- 中心內容 -->
@@ -131,29 +112,55 @@
     <a href="#" class="button">Get Started</a>
   </div>
 
-  <!-- 下方錨點內容 -->
-  <section id="about">
-    <p>這是「相關介紹」的內容。</p>
-  </section>
-  <section id="contact">
-    <p>這是「聯絡我們」的內容。</p>
-  </section>
-  <section id="services">
-    <p>這是「服務」的內容。</p>
-  </section>
+  <!-- 展開區塊 -->
+  <div id="contact" class="expandable">
+    <h2>聯絡我們</h2>
+    <p>如果您有任何問題，請聯繫我們！</p>
+    <p>Email: example@example.com</p>
+    <p>Phone: +123 456 7890</p>
+  </div>
 
-  <!-- JavaScript: 滑動效果 -->
+  <div id="about" class="expandable">
+    <h2>關於我們</h2>
+    <p>這是一個介紹我們公司的區塊。</p>
+  </div>
+
+  <div id="services" class="expandable">
+    <h2>我們的服務</h2>
+    <p>我們提供最好的服務來滿足您的需求。</p>
+  </div>
+
+  <!-- JavaScript: 展開區塊 -->
   <script>
-    // 將所有導航按鈕加上滑動效果
-    document.querySelectorAll('.nav-buttons a').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault(); // 防止直接跳轉
-        const target = document.querySelector(this.getAttribute('href')); // 獲取目標錨點
-        target.scrollIntoView({
-          behavior: 'smooth', // 平滑滾動效果
-          block: 'start' // 將目標對齊到視窗頂部
-        });
-      });
+    function toggleSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      
+      // 檢查是否有 "open" 類別，如果有就收起
+      if (section.classList.contains("open")) {
+        section.classList.remove("open");
+      } else {
+        // 關閉其他已展開的區塊
+        document.querySelectorAll('.expandable').forEach(sec => sec.classList.remove("open"));
+        
+        // 展開點擊的區塊
+        section.classList.add("open");
+      }
+    }
+
+    // 綁定按鈕點擊事件
+    document.getElementById("contact-btn").addEventListener("click", function(e) {
+      e.preventDefault();
+      toggleSection("contact");
+    });
+
+    document.getElementById("about-btn").addEventListener("click", function(e) {
+      e.preventDefault();
+      toggleSection("about");
+    });
+
+    document.getElementById("services-btn").addEventListener("click", function(e) {
+      e.preventDefault();
+      toggleSection("services");
     });
   </script>
 </body>
