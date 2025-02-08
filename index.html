@@ -262,8 +262,8 @@
         <img src="images/product_2.png" alt="Image 2">
     </div>  
     <div class="button-container">
-      <a href="#" id="APP" class="button">APP</a>
-      <a href="#" id="web" class="button">iOS/Web</a>
+      <a href="#" id="APP" class="button">Bắt Đầu</a>
+      <!-- <a href="#" id="web" class="button">iOS/Web</a> -->
       <a href="#" id="get-started-btn" class="button">đăng ký</a>
     </div>
     
@@ -364,24 +364,24 @@
     document.addEventListener("DOMContentLoaded", function () {
       // 獲取按鈕元素
       const appBtn = document.getElementById("APP");
-      const webBtn = document.getElementById("web");
+      // const webBtn = document.getElementById("web");
       const getStartedBtn = document.getElementById("get-started-btn");
 
       // 對應的跳轉網址
-      const appUrl = "https://vctegwbqj.com"; // 替換成 APP 的網址
-      const webUrl = "https://vctegwbqj.com/investor"; // 替換成 iOS/Web 的網址
+      // const appUrl = "https://vctegwbqj.com"; // 替換成 APP 的網址
+      // const webUrl = "https://vctegwbqj.com/investor"; // 替換成 iOS/Web 的網址
       const getStartedUrl = "https://vctegwbqj.com/registrations/new?code=WC9QF7"; // 替換成 đăng ký 的網址
 
       // 為每個按鈕添加點擊事件
-      appBtn.addEventListener("click", function (e) {
-        e.preventDefault(); // 阻止預設的跳轉行為
-        window.location.href = appUrl; // 跳轉到 APP 網頁
-      });
+      // appBtn.addEventListener("click", function (e) {
+      //   e.preventDefault(); // 阻止預設的跳轉行為
+      //   window.location.href = appUrl; // 跳轉到 APP 網頁
+      // });
 
-      webBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.location.href = webUrl; // 跳轉到 iOS/Web 網頁
-      });
+      // webBtn.addEventListener("click", function (e) {
+      //   e.preventDefault();
+      //   window.location.href = webUrl; // 跳轉到 iOS/Web 網頁
+      // });
 
       getStartedBtn.addEventListener("click", function (e) {
         e.preventDefault();
@@ -389,30 +389,32 @@
       });
 
       
-      // if (!getStartedBtn) return;
+      // if (getStartedBtn) return;
 
       // iOS App Store 鏈結
-      // const iosLink = "https://vctegwbqj.com/investors"; 
+      const iosLink = "https://vctegwbqj.com/investor"; 
 
       // Android Google Play 鏈結
-      // const androidLink = "https://vctegwbqj.com"; 
+      const androidLink = "https://vctegwbqj.com"; 
 
       // 透過 `navigator.userAgent` 判斷裝置類型
-      // const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      // let finalLink = "https://vctegwbqj.com/investors"; // 預設值
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      let finalLink = "https://vctegwbqj.com/investor"; // 預設值
 
-      // if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      //   finalLink = iosLink;
-      // } else if (/android/i.test(userAgent)) {
-      //   finalLink = androidLink;
-      // }
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        console.log("✅ `iOS` 被點擊，將跳轉到:", finalLink);
+        finalLink = iosLink;
+      } else if (/android/i.test(userAgent)) {
+        console.log("✅ `android` 被點擊，將跳轉到:", finalLink);
+        finalLink = androidLink;
+      }
 
-      // // ✅ 讓 `getStartedBtn` 點擊時才跳轉
-      // getStartedBtn.addEventListener("click", function (event) {
-      //   event.preventDefault(); // 避免 `href="#"` 造成頁面跳轉
-      //   console.log("✅ `get-started-btn` 被點擊，將跳轉到:", finalLink);
-      //   window.location.href = finalLink;
-      // });
+      // ✅ 讓 `getStartedBtn` 點擊時才跳轉
+      appBtn.addEventListener("click", function (event) {
+        event.preventDefault(); // 避免 `href="#"` 造成頁面跳轉
+        console.log("✅ `appBtn` 被點擊，將跳轉到:", finalLink);
+        window.location.href = finalLink;
+      });
     });
   </script>
 
