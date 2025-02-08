@@ -100,8 +100,9 @@
       width: 90%;
       max-width: 800px;
       z-index: 10; /* 確保 `.container` 不會被其他內容遮擋 */
+      bottom: env(safe-area-inset-bottom); /* 適應 iOS 安全區域 */
     }
-    
+        
     /* 標題 */
     .container h1 {
       font-size: 3rem;
@@ -222,15 +223,15 @@
   
     .container {
       width: 95%;
-      bottom: 10%; /* 再往上移一點 */
+      bottom: 1%; /* 再往上移一點 */
     }
   }
 
   /* 讓 `.container` 在小螢幕時縮小，避免擋住展開區塊 */
   @media (max-width: 768px) {
     .container {
-      width: 90%;
-      bottom: 12%; /* 在小螢幕時，稍微往上移，避免擋住展開內容 */
+      width: 95%;
+      bottom: 5%; /* 在小螢幕時，稍微往上移，避免擋住展開內容 */
       padding: 15px 30px; /* 減少 padding，讓內容更緊湊 */
     }
   }
@@ -239,7 +240,7 @@
   @media (max-width: 480px) {
     .container {
       width: 95%;
-      bottom: 15%; /* 再往上移，讓展開的區塊有更多空間 */
+      bottom: 1%; /* 再往上移，讓展開的區塊有更多空間 */
       padding: 10px 20px; /* 進一步縮小內距 */
     }
   }
