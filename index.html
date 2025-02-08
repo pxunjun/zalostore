@@ -108,8 +108,9 @@
     
     /* 展開區域（預設為隱藏） */
     .expandable {
-      width: 80%;
-      max-width: 800px;
+      width: 90%;
+/*      max-width: 800px;*/
+      max-width: none; /* 取消最大寬度 */
       margin-top: 20px;
       background: rgba(255, 255, 255, 0.9);
       color: black;
@@ -123,23 +124,25 @@
 
     /* 當展開時的樣式 */
     .expandable.open {
-      max-height: 600px; /* 控制展開的最大高度 */
+      max-height: 800px; /* 控制展開的最大高度 */
       opacity: 1;
       padding: 20px;
+      overflow-y: auto; /* 讓內容可滾動 */
+      max-height: 75vh; /* 讓區塊最大高度為螢幕 70%，避免超出 */
     }
 
     /* 🔹 小螢幕（如手機）時，自動調整寬度，減少左右空間 */
     @media (max-width: 768px) {
-      .expandable {
-        width: 90%; /* 讓展開內容變寬，佔滿 90% 螢幕 */
+      .expandable.open {
+        width: 95%; /* 讓展開內容變寬，佔滿 90% 螢幕 */
         max-width: none; /* 取消最大寬度 */
       }
     }
 
     /* 🔹 極小螢幕（如 iPhone SE） */
     @media (max-width: 480px) {
-      .expandable {
-        width: 95%; /* 讓內容幾乎佔滿整個螢幕 */
+      .expandable.open {
+        width: 98%; /* 讓內容幾乎佔滿整個螢幕 */
         max-width: none;
       }
     }
@@ -173,29 +176,6 @@
       width: 90%; /* 讓 `container` 變窄，避免擋住按鈕 */
       bottom: 8%; /* 當螢幕小時，稍微往上移動 */
     }
-  }
-
-  .expandable {
-    width: 80%;
-    max-width: 800px;
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    color: black;
-    border-radius: 10px;
-    padding: 0;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.6s ease-out, opacity 0.6s ease-out, padding 0.3s ease;
-  }
-
-  /* 當 `.expandable.open` 展開時，讓它顯示滾動條 */
-  .expandable.open {
-    max-height: 500px; /* 控制展開的最大高度 */
-    opacity: 1;
-    padding: 20px;
-    overflow-y: auto; /* 讓內容可滾動 */
-    max-height: 70vh; /* 讓區塊最大高度為螢幕 70%，避免超出 */
   }
 
   /* 極小螢幕（如 iPhone SE） */
@@ -329,6 +309,13 @@
     function toggleSection(sectionId) {
       const section = document.getElementById(sectionId);
       const container = document.querySelector('.container');
+      const video = document.getElementById("m_video"); // 獲取影片元素
+
+      // 停止影片播放
+      if (!video.paused) {
+        video.pause();
+        video.currentTime = 0; // 選擇性重置播放進度
+      }
     
       // 檢查是否有 "open" 類別，如果有就收起
       if (section.classList.contains("open")) {
