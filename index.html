@@ -364,35 +364,39 @@
       toggleSection("about");
     });
 
-    document.getElementById("services-btn").addEventListener("click", function(e) {
-      e.preventDefault();
-      toggleSection("services");
-    });
+    // document.getElementById("services-btn").addEventListener("click", function(e) {
+    //   e.preventDefault();
+    //   toggleSection("services");
+    // });
 
     document.addEventListener("DOMContentLoaded", function () {
       const getStartedBtn = document.getElementById("get-started-btn");
 
+      if (!getStartedBtn) return;
+
       // iOS App Store 鏈結
-      const iosLink = "https://vctegwbqj.com/investors"; // 替換成你的 iOS App Store 連結
+      const iosLink = "https://vctegwbqj.com/investors"; 
 
       // Android Google Play 鏈結
-      const androidLink = "https://vctegwbqj.com"; // 替換成你的 Google Play 連結
+      const androidLink = "https://vctegwbqj.com"; 
 
       // 透過 `navigator.userAgent` 判斷裝置類型
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      let finalLink = "https://vctegwbqj.com/investors"; // 預設值
 
       if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        // 如果是 iOS 設備
-        getStartedBtn.href = iosLink;
+        finalLink = iosLink;
       } else if (/android/i.test(userAgent)) {
-        // 如果是 Android 設備
-        getStartedBtn.href = androidLink;
-      } else {
-        // 其他裝置，例如桌面電腦
-        getStartedBtn.href = "https://vctegwbqj.com/investors"; // 替換成你的網站或其他通用鏈結
+        finalLink = androidLink;
       }
-    });
 
+      // ✅ 讓 `getStartedBtn` 點擊時才跳轉
+      getStartedBtn.addEventListener("click", function (event) {
+        event.preventDefault(); // 避免 `href="#"` 造成頁面跳轉
+        console.log("✅ `get-started-btn` 被點擊，將跳轉到:", finalLink);
+        window.location.href = finalLink;
+      });
+    });
   </script>
 
 
