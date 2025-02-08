@@ -75,15 +75,17 @@
     /* 調整中心內容的垂直位置 */
     .container {
       text-align: center;
-      background: rgba(0, 0, 0, 0.5); /* 背景透明效果 */
+      background: rgba(0, 0, 0, 0.5);
       padding: 20px 40px;
       border-radius: 15px;
       position: absolute;
-      top: 50%; /* 預設置中 */
       left: 50%;
-      transform: translate(-50%, -30%); /* 讓內容往下移 30% */
+      bottom: 5%; /* 永遠距離螢幕底部 5% */
+      transform: translateX(-50%); /* 水平置中 */
+      width: 80%;
+      max-width: 800px;
     }
-
+    
     /* 標題 */
     .container h1 {
       font-size: 3rem;
