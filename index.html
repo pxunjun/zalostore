@@ -123,7 +123,7 @@
       margin-top: 20px;
       background: rgba(255, 255, 255, 0.9);
       color: black;
-      border-radius: 10px;
+      border-radius: 7px;
       padding: 0;
       overflow: hidden;
       max-height: 0;
@@ -133,9 +133,25 @@
 
     /* 當展開時的樣式 */
     .expandable.open {
-      max-height: 500px; /* 控制展開的最大高度 */
+      max-height: 600px; /* 控制展開的最大高度 */
       opacity: 1;
       padding: 20px;
+    }
+
+    /* 🔹 小螢幕（如手機）時，自動調整寬度，減少左右空間 */
+    @media (max-width: 768px) {
+      .expandable {
+        width: 90%; /* 讓展開內容變寬，佔滿 90% 螢幕 */
+        max-width: none; /* 取消最大寬度 */
+      }
+    }
+
+    /* 🔹 極小螢幕（如 iPhone SE） */
+    @media (max-width: 480px) {
+      .expandable {
+        width: 95%; /* 讓內容幾乎佔滿整個螢幕 */
+        max-width: none;
+      }
     }
 
     .image-container {
