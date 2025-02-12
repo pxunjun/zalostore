@@ -1,0 +1,211 @@
+/* ==========================================================================
+   基礎設置
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  color: white;
+  font-family: Arial, sans-serif;
+  background-image: url('images/background_image_waifu2x_photo_noise3_scale.png');
+  background-size: cover;
+  background-position: center;
+}
+
+/* ==========================================================================
+   導航按鈕
+   ========================================================================== */
+.nav-buttons {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.nav-buttons a {
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-buttons a:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: black;
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   主容器樣式
+   ========================================================================== */
+.container {
+  position: fixed;
+  left: 50%;
+  bottom: env(safe-area-inset-bottom);
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
+  padding: 20px 40px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  z-index: 10;
+}
+
+.container h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.container p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   按鈕樣式
+   ========================================================================== */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: white;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(90deg, #feb47b, #ff7e5f);
+}
+
+/* ==========================================================================
+   展開區域樣式
+   ========================================================================== */
+.expandable {
+  width: 90%;
+  max-width: none;
+  margin-top: 20px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  border-radius: 7px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.6s ease-out, 
+              opacity 0.6s ease-out, 
+              padding 0.3s ease;
+}
+
+.expandable.open {
+  max-height: 75vh;
+  opacity: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* ==========================================================================
+   圖片容器
+   ========================================================================== */
+.image-container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.image-container img {
+  width: 150px;
+  height: auto;
+}
+
+/* ==========================================================================
+   視頻樣式
+   ========================================================================== */
+#m_video {
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
+
+/* ==========================================================================
+   動畫效果
+   ========================================================================== */
+.container.shift-down {
+  bottom: -100%;
+  transition: bottom 0.5s ease-in-out;
+}
+
+/* ==========================================================================
+   響應式設計
+   ========================================================================== */
+/* 平板和小螢幕電腦 */
+@media (max-width: 768px) {
+  .nav-buttons {
+    top: 10px;
+    right: 10px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .nav-buttons a {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .container {
+    width: 95%;
+    bottom: 5%;
+    padding: 15px 30px;
+  }
+
+  .expandable.open {
+    width: 95%;
+  }
+}
+
+/* 手機 */
+@media (max-width: 480px) {
+  .nav-buttons {
+    top: 5px;
+    right: 5px;
+  }
+
+  .nav-buttons a {
+    font-size: 0.7rem;
+    padding: 6px 10px;
+  }
+
+  .container {
+    width: 95%;
+    bottom: 1%;
+    padding: 10px 20px;
+  }
+
+  .expandable.open {
+    width: 98%;
+  }
+}
+
