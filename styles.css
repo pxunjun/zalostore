@@ -55,10 +55,11 @@ body {
 .container {
   position: fixed;
   left: 50%;
-  bottom: env(safe-area-inset-bottom);
+  bottom: 5%;
+  /* env(safe-area-inset-bottom); */
   transform: translateX(-50%);
-  width: 90%;
-  max-width: 800px;
+  width: 75%;
+  max-width: 1600px;
   padding: 20px 40px;
   text-align: center;
   background: rgba(0, 0, 0, 0.5);
@@ -67,13 +68,13 @@ body {
 }
 
 .container h1 {
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 10px;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
 }
 
 .container p {
-  font-size: 1.2rem;
+  font-size: 2rem;
   margin-bottom: 20px;
   line-height: 1.5;
 }
@@ -135,7 +136,7 @@ body {
 }
 
 .image-container img {
-  width: 150px;
+  width: 250px;
   height: auto;
 }
 
@@ -181,8 +182,21 @@ body {
     padding: 15px 30px;
   }
 
+  .container h1 {
+    font-size: 2rem;
+  }
+
+  .container p {
+    font-size: 1.5rem;
+  }
+
   .expandable.open {
     width: 95%;
+  }
+
+  .image-container img {
+    width: 150px;
+    height: auto;
   }
 }
 
@@ -204,8 +218,21 @@ body {
     padding: 10px 20px;
   }
 
+  .container h1 {
+    font-size: 1.5rem;
+  }
+
+  .container p {
+    font-size: 1rem;
+  }
+
   .expandable.open {
     width: 98%;
+  }
+
+  .image-container img {
+    width: 150px;
+    height: auto;
   }
 }
 
